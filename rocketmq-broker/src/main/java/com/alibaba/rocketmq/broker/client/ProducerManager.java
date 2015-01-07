@@ -15,7 +15,12 @@
  */
 package com.alibaba.rocketmq.broker.client;
 
+import com.alibaba.rocketmq.common.constant.LoggerName;
+import com.alibaba.rocketmq.remoting.common.RemotingHelper;
+import com.alibaba.rocketmq.remoting.common.RemotingUtil;
 import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,13 +29,6 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.alibaba.rocketmq.common.constant.LoggerName;
-import com.alibaba.rocketmq.remoting.common.RemotingHelper;
-import com.alibaba.rocketmq.remoting.common.RemotingUtil;
 
 
 /**
@@ -197,5 +195,23 @@ public class ProducerManager {
         catch (InterruptedException e) {
             log.error("", e);
         }
+    }
+
+    /**
+     * 获取ProducerGroup
+     * @param producerName 当等于null时候，说明获取全部。否则groupName包含producerName，那么就显示
+     * @return
+     */
+    public HashMap<String, HashMap<Channel, ClientChannelInfo>> queryProducerGroup(String producerName){
+
+        HashMap<String, HashMap<Channel, ClientChannelInfo>> groups = new HashMap<String, HashMap<Channel, ClientChannelInfo>>();
+        Iterator<String> it = this.groupChannelTable.keySet().iterator();
+        while (it.hasNext()) {
+            String groupName = it.next();
+           if(producerName == null || groupName.contains(producerName)){
+               groups.put(groupName,this.getGroupChannelTable().get(groupName));
+           }
+        }
+        return groups;
     }
 }

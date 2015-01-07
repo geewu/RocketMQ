@@ -21,10 +21,10 @@
 	<inceptionYear>2012</inceptionYear>
 	<groupId>com.alibaba.rocketmq</groupId>
 	<artifactId>rocketmq-all</artifactId>
-	<version>3.2.2</version>
+	<version>3.2.2.1</version>
 	<packaging>pom</packaging>
 	<name>rocketmq-all ${project.version}</name>
-	<url>https://github.com/alibaba/rocketmq</url>
+	<url>https://github.com/geewu/rocketmq</url>
 	<description>https://github.com/alibaba/RocketMQ/blob/develop/README.md</description>
 
 
@@ -236,7 +236,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.1</version>
+						<version>1.5</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
