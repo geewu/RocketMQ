@@ -48,3 +48,4 @@ target/mvn-eclipse-cache.properties
 *.class
 target/
 *.iml
+.idea
