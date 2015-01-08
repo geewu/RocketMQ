@@ -1257,7 +1257,8 @@ public class MQClientAPIImpl {
             RemotingTimeoutException, InterruptedException, MQBrokerException {
         // 添加虚拟运行环境相关的projectGroupPrefix
         String producerGroupWithProjectGroup = likeGroupName;
-        if (!UtilAll.isBlank(projectGroupPrefix)) {
+        //增加了相似判断功能。
+        if (!UtilAll.isBlank(projectGroupPrefix)&&likeGroupName!=null) {
             producerGroupWithProjectGroup =
                     VirtualEnvUtil.buildWithProjectGroup(likeGroupName, projectGroupPrefix);
         }
