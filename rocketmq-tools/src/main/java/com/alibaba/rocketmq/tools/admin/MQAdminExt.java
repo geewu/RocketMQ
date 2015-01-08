@@ -215,6 +215,19 @@ public interface MQAdminExt extends MQAdmin {
     public ProducerConnection examineProducerConnectionInfo(final String producerGroup, final String topic)
             throws RemotingException, MQClientException, InterruptedException, MQBrokerException;
 
+    /**
+     * 查看Producer网络连接
+     *
+     * @param producerGroup
+     * @param brokerAddr
+     * @return
+     * @throws InterruptedException
+     * @throws MQClientException
+     * @throws RemotingException
+     * @throws MQBrokerException
+     */
+    public ProducerConnection exmaineBrokerProduerConnectionInfo(final String producerGroup, final String brokerAddr)
+            throws RemotingException, MQClientException, InterruptedException, MQBrokerException;
 
     /**
      * 查看活动的ProducerGroup

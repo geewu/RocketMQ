@@ -212,6 +212,11 @@ public class DefaultMQAdminExt extends ClientConfig implements MQAdminExt {
     }
 
     @Override
+    public ProducerConnection exmaineBrokerProduerConnectionInfo(String producerGroup, String brokerAddr) throws RemotingException, MQClientException, InterruptedException, MQBrokerException {
+        return defaultMQAdminExtImpl.exmaineBrokerProduerConnectionInfo(producerGroup, brokerAddr);
+    }
+
+    @Override
     public ProducerGroup examineActiveProducerGroupInfo(String brokerAddr) throws RemotingException, MQClientException, InterruptedException, MQBrokerException {
         return defaultMQAdminExtImpl.examineActiveProducerGroupInfo(brokerAddr);
     }

@@ -331,8 +331,7 @@ public class DefaultMQAdminExtImpl implements MQAdminExt, MQAdminExtInner {
         for (BrokerData bd : topicRouteData.getBrokerDatas()) {
             String addr = bd.selectBrokerAddr();
             if (addr != null) {
-                return this.mqClientInstance.getMQClientAPIImpl().getProducerConnectionList(addr,
-                    producerGroup, 300);
+                return exmaineBrokerProduerConnectionInfo(producerGroup,addr);
             }
         }
 
@@ -341,6 +340,17 @@ public class DefaultMQAdminExtImpl implements MQAdminExt, MQAdminExtInner {
         }
 
         return result;
+    }
+
+    @Override
+    public ProducerConnection exmaineBrokerProduerConnectionInfo(String producerGroup, String brokerAddr) throws RemotingException, MQClientException, InterruptedException, MQBrokerException {
+
+        if (brokerAddr != null) {
+            return this.mqClientInstance.getMQClientAPIImpl().getProducerConnectionList(brokerAddr,
+                    producerGroup, 300);
+        }
+
+        throw new MQClientException("Not found broker connection", null);
     }
 
     @Override
